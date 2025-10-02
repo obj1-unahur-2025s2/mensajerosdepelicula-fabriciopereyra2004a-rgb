@@ -1,0 +1,82 @@
+import mensajeros.*
+
+describe "Text Mensajeos" {
+    test "Que roberto (90kg) puede llevar un paquete que está pago en un camión que tiene un acoplado."{
+    roberto.cambiarPeso(90)
+    roberto.cambiarVehiculo(camion)
+    camion.acoplados(1)
+    paquete.pagar()
+    paquete.asignarDestino(puenteDeBrooklyn)
+    assert.that(paquete.puedeSerEntregado(roberto))
+    }
+
+    test "Un paquete puede entregarse cuando el mensajero puede llegar al destino indicado y además el paquete está pago"{
+        neo.tieneCredito()
+        paquete.asignarDestino(matrix)
+        paquete.estaPagado()
+        assert.notThat(paquete.puedeSerEntregado(neo))
+    }
+
+    test "Despedir y contratar al mismo mensajero" {
+    empresa.despedirMensajero(neo)
+    empresa.contratarMensajero(neo)
+    assert.equals(neo, empresa.mensajerosActual().last())
+    }
+
+    test "Contratar a un nuevo mensajero" {
+    var nuevo = object {
+        method peso() = 60
+        method puedeLlamar() = false
+    }
+    empresa.contratarMensajero(nuevo)
+    assert.that(empresa.mensajerosActual().contains(nuevo))
+    }
+
+    test "Despedir un mensajero" {
+    empresa.despedirMensajero(chuck)
+    assert.notThat(empresa.mensajerosActual().contains(chuck))
+    }
+
+    test "Contratar y despedir mensajero" {
+        empresa.contratarMensajero(roberto)
+        assert.that(empresa.mensajerosActual().contains(roberto))
+        empresa.despedirMensajero(roberto)
+        assert.notThat(empresa.mensajerosActual().contains(roberto))
+    }
+
+    test "Despedir a todos los mensajeros" {
+    empresa.despedirATodos()
+    assert.equals(0, empresa.mensajerosActual().size())
+    }
+
+    test "La empresa puede entregar un paquete si al menos un mensajero puede hacerlo" {
+    paquete.pagar()
+    paquete.asignarDestino(puenteDeBrooklyn)
+    // Comprobamos explícitamente que al menos Roberto puede entregar el paquete
+    assert.that(paquete.puedeSerEntregado(roberto))
+    }
+    test "Paquetito siempre puede entregarse por cualquier mensajero" {
+        assert.that(paquetito.puedeSerEntregado(roberto))
+        assert.that(paquetito.puedeSerEntregado(chuck))
+    }
+
+/*
+
+/*
+Se necesita:
+1. Averiguar si un paquete puede ser entregado por la empresa de mensajería, es decir, si al menos uno de sus mensajeros puede entregar el paquete.
+2. Obtener todos los mensajeros que pueden llevar un paquete dado. 
+3. Saber si una mensajería tiene sobrepeso. Esto sucede si el promedio del peso de los mensajeros es superior a 500 Kg. 
+4. Hacer que la empresa de mensajería envíe un paquete. Para ello elige cualquier mensajero entre los que pueden enviarlo y si no puede lo agrega a los paquetes pendientes. (leer también punto siguiente)
+5. Conocer la facturación de la empresa, que es el total ganado por los paquetes enviados.
+6. Dado un conjunto de paquetes, enviarlos a todos.
+7. Encontrar el paquete pendiente más caro y enviarlo, actualizando los pendientes en caso de haberlo podido enviar.
+8. Cada punto debe tener mínimo un test que demuestren su correcto funcionamiento.
+9. Agregar un nuevo mensajero y un nuevo paquete y garantizar que todo siga funcionando.
+
+Cada punto debe tener mínimo un test.<br>
+Agregar un nuevo mensajero y un nuevo paquete y garantizar que todo siga funcionando.
+
+*/
+*/
+}

@@ -6,7 +6,8 @@
 
 ## Primera parte: Destinos y mensajeros
 
-Desarrollar y probar un programa que me permita saber si el paquete puede ser entregado por un mensajero. Un paquete puede entregarse cuando el mensajero puede llegar al destino indicado y además el paquete está pago.
+Desarrollar y probar un programa que me permita saber si el paquete puede ser entregado por un mensajero. 
+Un paquete puede entregarse cuando el mensajero puede llegar al destino indicado y además el paquete está pago.
 
 **Destinos posibles:**
 
